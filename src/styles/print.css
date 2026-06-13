@@ -619,3 +619,35 @@
     display: none !important;
   }
 }
+
+/* ---------- Screen Template Styles (visible in editor) ---------- */
+.template-harvard .resume-section-heading {
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+  letter-spacing: 0.02em !important;
+}
+
+.template-jakes .resume-section-heading {
+  font-size: 0.95rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  border-bottom: none !important;
+}
+
+.template-modern .resume-section-heading {
+  font-weight: 600 !important;
+  border-bottom-width: 2px !important;
+  border-color: #1f2937 !important;
+}
+
+.template-technical .resume-section-heading {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  border-bottom-width: 2px !important;
+  border-color: #111827 !important;
+}
+
+.template-ats-classic .resume-section-heading {
+  font-size: 0.95rem !important;
+  letter-spacing: 0.02em !important;
+  border-bottom-width: 1px !important;
+}

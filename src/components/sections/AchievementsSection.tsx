@@ -46,7 +46,7 @@ export function AchievementsSection({ data, viewMode, onUpdate }: AchievementsSe
                   placeholder="Certification or Achievement"
                   className="resume-achievement-title font-medium"
                 />
-                {ach.date && (
+                {(ach.date || !viewMode) && (
                   <>
                     <span className="text-gray-400 hidden print:inline"> | </span>
                     <span className="text-gray-400 inline print:hidden">|</span>
@@ -60,7 +60,7 @@ export function AchievementsSection({ data, viewMode, onUpdate }: AchievementsSe
                   </>
                 )}
               </div>
-              {ach.description && (
+              {(ach.description || !viewMode) && (
                 <EditableText
                   value={ach.description}
                   onChange={v => updateAchievement(ach.id, 'description', v)}

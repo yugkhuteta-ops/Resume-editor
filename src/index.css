@@ -41,7 +41,7 @@ button, a, [role="button"] {
 @media print {
   @page {
     size: letter;
-    margin: 0.5in;
+    margin: 0.6in 0.7in;
   }
 
   * {
@@ -49,9 +49,15 @@ button, a, [role="button"] {
     print-color-adjust: exact !important;
   }
 
+  html {
+    background: white !important;
+  }
+
   body {
     background: white !important;
     font-size: 11pt !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .no-print {
@@ -72,8 +78,22 @@ button, a, [role="button"] {
   }
 }
 
-@media print and (orientation: portrait) {
-  @page {
-    size: letter portrait;
+/* Print preview page effect */
+.print-preview-mode .resume-container {
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  width: 8.5in;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.6in 0.7in;
+  min-height: 11in;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .print-preview-mode .resume-container {
+    width: 100%;
+    padding: 1.5rem;
+    min-height: auto;
   }
 }

@@ -50,7 +50,7 @@ export function EducationSection({ data, viewMode, onUpdate }: EducationSectionP
                   placeholder="Degree"
                   className="resume-education-degree font-semibold"
                 />
-                {edu.institution && (
+                {(edu.institution || !viewMode) && (
                   <>
                     <span className="text-gray-500 hidden print:inline">, </span>
                     <span className="text-gray-500 inline print:hidden">from</span>
@@ -64,7 +64,7 @@ export function EducationSection({ data, viewMode, onUpdate }: EducationSectionP
                   </>
                 )}
               </div>
-              {edu.location && (
+              {(edu.location || !viewMode) && (
                 <EditableText
                   value={edu.location}
                   onChange={v => updateEducation(edu.id, 'location', v)}
@@ -74,11 +74,23 @@ export function EducationSection({ data, viewMode, onUpdate }: EducationSectionP
                 />
               )}
               <div className="resume-education-details text-sm text-gray-500 mt-0.5 flex gap-3">
-                {(edu.startDate || edu.endDate) && (
-                  <span>{edu.startDate || ''}{edu.startDate && edu.endDate ? ' - ' : ''}{edu.endDate || ''}</span>
+                {viewMode ? (
+                  <>
+                    {(edu.startDate || edu.endDate) && (
+                      <span>{edu.startDate || ''}{edu.startDate && edu.endDate ? ' - ' : ''}{edu.endDate || ''}</span>
+                    )}
+                    {edu.gpa && <span>GPA: {edu.gpa}</span>}
+                    {edu.honors && <span>{edu.honors}</span>}
+                  </>
+                ) : (
+                  <>
+                    <EditableText value={edu.startDate} onChange={v => updateEducation(edu.id, 'startDate', v)} viewMode={viewMode} placeholder="Start" className="text-sm" />
+                    <span>-</span>
+                    <EditableText value={edu.endDate} onChange={v => updateEducation(edu.id, 'endDate', v)} viewMode={viewMode} placeholder="End" className="text-sm" />
+                    <EditableText value={edu.gpa} onChange={v => updateEducation(edu.id, 'gpa', v)} viewMode={viewMode} placeholder="GPA" className="text-sm" />
+                    <EditableText value={edu.honors} onChange={v => updateEducation(edu.id, 'honors', v)} viewMode={viewMode} placeholder="Honors" className="text-sm" />
+                  </>
                 )}
-                {edu.gpa && <span>GPA: {edu.gpa}</span>}
-                {edu.honors && <span>{edu.honors}</span>}
               </div>
             </div>
             {!viewMode && (

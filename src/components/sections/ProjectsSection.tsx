@@ -55,7 +55,7 @@ export function ProjectsSection({ data, viewMode, onUpdate }: ProjectsSectionPro
                   placeholder="Project name"
                   className="resume-entry-title font-semibold"
                 />
-                {project.link && (
+                {project.link || !viewMode ? (
                   <EditableText
                     value={project.link}
                     onChange={v => updateProject(project.id, 'link', v)}
@@ -63,9 +63,9 @@ export function ProjectsSection({ data, viewMode, onUpdate }: ProjectsSectionPro
                     placeholder="github.com/username/project"
                     className="text-sm text-gray-500"
                   />
-                )}
+                ) : null}
               </div>
-              {project.description && (
+              {(project.description || !viewMode) && (
                 <EditableText
                   value={project.description}
                   onChange={v => updateProject(project.id, 'description', v)}
@@ -75,9 +75,21 @@ export function ProjectsSection({ data, viewMode, onUpdate }: ProjectsSectionPro
                   multiline
                 />
               )}
-              {project.technologies.length > 0 && viewMode && (
+              {viewMode && project.technologies.length > 0 && (
                 <div className="text-xs text-gray-500 mt-0.5">
                   <span className="font-medium">Tech:</span> {project.technologies.join(', ')}
+                </div>
+              )}
+              {!viewMode && (
+                <div className="text-xs text-gray-500 mt-1">
+                  <span className="font-medium">Tech:</span>
+                  <EditableText
+                    value={project.technologies.join(', ')}
+                    onChange={v => updateProject(project.id, 'technologies', v.split(',').map(s => s.trim()).filter(Boolean))}
+                    viewMode={viewMode}
+                    placeholder="React, TypeScript, Node.js"
+                    className="text-xs text-gray-500 ml-1"
+                  />
                 </div>
               )}
             </div>

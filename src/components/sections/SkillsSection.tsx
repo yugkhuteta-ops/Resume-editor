@@ -31,7 +31,7 @@ export function SkillsSection({ data, viewMode, onUpdate }: SkillsSectionProps) 
         <div className="resume-skills-list text-sm text-gray-700">
           {data.map((skill, i) => (
             <span key={i} className="resume-skills-item">
-              {skill}{i < data.length - 1 ? ',' : ''}
+              {skill}
             </span>
           ))}
           {data.length === 0 && (

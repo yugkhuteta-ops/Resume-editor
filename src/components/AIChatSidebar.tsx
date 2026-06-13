@@ -223,9 +223,19 @@ export function AIChatSidebar({ resumeData, onClose }: AIChatSidebarProps) {
               Save
             </button>
           </div>
-          <p className="text-xs text-amber-600 mt-1">
-            Your key is stored locally and never sent anywhere except OpenAI.
-          </p>
+          <div className="flex items-center justify-between mt-1">
+            <p className="text-xs text-amber-600">
+              Your key is stored locally and never sent anywhere except OpenAI.
+            </p>
+            <a
+              href="https://platform.openai.com/api-keys"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-primary-600 hover:text-primary-700 underline shrink-0 ml-2"
+            >
+              Get API key
+            </a>
+          </div>
         </div>
       )}
 

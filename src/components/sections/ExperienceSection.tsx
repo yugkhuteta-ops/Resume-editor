@@ -99,17 +99,15 @@ export function ExperienceSection({ data, viewMode, onUpdate }: ExperienceSectio
                   {formatDateRange(exp)}
                 </div>
               </div>
-              {exp.location && (
-                <div className="resume-entry-location text-sm text-gray-500 mt-0.5">
-                  <EditableText
-                    value={exp.location}
-                    onChange={v => updateExperience(exp.id, 'location', v)}
-                    viewMode={viewMode}
-                    placeholder="Location"
-                  />
-                </div>
-              )}
-              {!viewMode && !exp.startDate && !exp.endDate && (
+              <div className="resume-entry-location text-sm text-gray-500 mt-0.5">
+                <EditableText
+                  value={exp.location}
+                  onChange={v => updateExperience(exp.id, 'location', v)}
+                  viewMode={viewMode}
+                  placeholder="Location"
+                />
+              </div>
+              {!viewMode && (
                 <div className="flex gap-2 text-sm text-gray-500 mt-1">
                   <EditableText value={exp.startDate} onChange={v => updateExperience(exp.id, 'startDate', v)} viewMode={viewMode} placeholder="Start date" />
                   <span>-</span>

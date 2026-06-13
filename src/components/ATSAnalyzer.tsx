@@ -218,6 +218,56 @@ export function ATSAnalyzer({ resumeData }: { resumeData: ResumeData }) {
     issues.push({ type: 'info', section: 'Achievements', message: 'No achievements listed', detail: 'Certifications and awards add credibility.' });
   }
 
+  // Contact completeness
+  const linkedinPattern = /linkedin\.com\/in\//i;
+  if (resumeData.contact.linkedin && !linkedinPattern.test(resumeData.contact.linkedin)) {
+    issues.push({ type: 'info', section: 'Contact', message: 'LinkedIn URL format may be incorrect', detail: 'Should look like: linkedin.com/in/username' });
+  }
+  // Summary length check
+  if (resumeData.summary && resumeData.summary.length > 0) {
+    const wordCount = resumeData.summary.split(/\s+/).length;
+    if (wordCount < 15) {
+      issues.push({ type: 'info', section: 'Summary', message: `Only ${wordCount} words in summary`, detail: 'Aim for 30-60 words for a strong professional summary.' });
+    } else if (wordCount > 80) {
+      issues.push({ type: 'info', section: 'Summary', message: `Summary is ${wordCount} words`, detail: 'Consider trimming to 30-60 words for maximum impact.' });
+    }
+  }
+
+  // Skills check - detect duplicates
+  if (resumeData.skills.length > 0) {
+    const lower = resumeData.skills.map(s => s.toLowerCase());
+    const duplicates = lower.filter((s, i) => lower.indexOf(s) !== i);
+    if (duplicates.length > 0) {
+      issues.push({ type: 'warning', section: 'Skills', message: `${duplicates.length} duplicate skill(s) found`, detail: `Remove duplicates: ${[...new Set(duplicates)].join(', ')}` });
+    }
+    // Check for soft skills vs hard skills ratio
+    const softSkills = ['leadership', 'communication', 'teamwork', 'problem-solving', 'critical thinking', 'time management', 'collaboration', 'adaptability', 'creativity'];
+    const hasSoftSkills = softSkills.some(s => resumeData.skills.some(sk => sk.toLowerCase().includes(s)));
+    if (!hasSoftSkills && resumeData.skills.length > 3) {
+      issues.push({ type: 'info', section: 'Skills', message: 'No soft skills detected', detail: 'Consider adding key soft skills like leadership, communication, or teamwork.' });
+    }
+  }
+
+  // Experience completeness
+  if (resumeData.experience.length > 0) {
+    const missingDates = resumeData.experience.filter(e => !e.startDate);
+    if (missingDates.length > 0) {
+      issues.push({ type: 'warning', section: 'Experience', message: `${missingDates.length} entry(ies) missing start date`, detail: 'Each role should have at least a start date.' });
+    }
+    const missingPositions = resumeData.experience.filter(e => !e.position);
+    if (missingPositions.length > 0) {
+      issues.push({ type: 'error', section: 'Experience', message: `${missingPositions.length} entry(ies) missing job title`, detail: 'Every role needs a position title.' });
+    }
+  }
+
+  // Achievements completeness
+  if (resumeData.achievements.length > 0) {
+    const missingTitles = resumeData.achievements.filter(a => !a.title);
+    if (missingTitles.length > 0) {
+      issues.push({ type: 'warning', section: 'Achievements', message: `${missingTitles.length} achievement(s) missing title`, detail: 'Each achievement needs a title.' });
+    }
+  }
+
   // Quantification analysis
   const allText = [
     resumeData.summary,
