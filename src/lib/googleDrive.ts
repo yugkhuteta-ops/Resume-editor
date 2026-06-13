@@ -13,13 +13,13 @@ export function getStoredToken(): string | null {
 export function storeToken(token: string): void {
   try {
     sessionStorage.setItem('google_drive_token', token);
-  } catch {}
+  } catch { /* noop */ }
 }
 
 export function clearToken(): void {
   try {
     sessionStorage.removeItem('google_drive_token');
-  } catch {}
+  } catch { /* noop */ }
 }
 
 async function driveFetch(url: string, options: RequestInit = {}): Promise<Response> {

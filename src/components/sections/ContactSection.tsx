@@ -4,12 +4,12 @@ import { EditableText } from '../EditableText';
 interface ContactSectionProps {
   data: ContactInfo;
   viewMode: boolean;
-  onUpdate: (data: ResumeData) => void;
+  onUpdate: (data: Partial<ResumeData>) => void;
 }
 
 export function ContactSection({ data, viewMode, onUpdate }: ContactSectionProps) {
   const updateField = (field: keyof ContactInfo, value: string) => {
-    onUpdate({ contact: { ...data, [field]: value } } as any);
+    onUpdate({ contact: { ...data, [field]: value } });
   };
 
   const contactFields = [

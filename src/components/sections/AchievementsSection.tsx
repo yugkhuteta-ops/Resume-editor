@@ -5,7 +5,7 @@ import { EditableText } from '../EditableText';
 interface AchievementsSectionProps {
   data: Achievement[];
   viewMode: boolean;
-  onUpdate: (data: ResumeData) => void;
+  onUpdate: (data: Partial<ResumeData>) => void;
 }
 
 export function AchievementsSection({ data, viewMode, onUpdate }: AchievementsSectionProps) {
@@ -16,17 +16,17 @@ export function AchievementsSection({ data, viewMode, onUpdate }: AchievementsSe
       description: '',
       date: '',
     };
-    onUpdate({ achievements: [...data, newAch] } as any);
+    onUpdate({ achievements: [...data, newAch] });
   };
 
   const removeAchievement = (id: string) => {
-    onUpdate({ achievements: data.filter(a => a.id !== id) } as any);
+    onUpdate({ achievements: data.filter(a => a.id !== id) });
   };
 
   const updateAchievement = (id: string, field: keyof Achievement, value: string) => {
     onUpdate({
       achievements: data.map(a => (a.id === id ? { ...a, [field]: value } : a))
-    } as any);
+    });
   };
 
   return (

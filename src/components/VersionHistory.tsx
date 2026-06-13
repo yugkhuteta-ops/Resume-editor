@@ -47,10 +47,10 @@ export function VersionHistory({ versions, onRestore, onSave, onClose }: Version
     const thisWeek = new Date(today);
     thisWeek.setDate(thisWeek.getDate() - 7);
 
-    let todayGroup: ResumeVersion[] = [];
-    let yesterdayGroup: ResumeVersion[] = [];
-    let thisWeekGroup: ResumeVersion[] = [];
-    let olderGroup: ResumeVersion[] = [];
+    const todayGroup: ResumeVersion[] = [];
+    const yesterdayGroup: ResumeVersion[] = [];
+    const thisWeekGroup: ResumeVersion[] = [];
+    const olderGroup: ResumeVersion[] = [];
 
     versions.forEach(v => {
       const d = new Date(v.timestamp);

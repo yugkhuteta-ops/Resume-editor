@@ -1,4 +1,4 @@
-import { Cloud, LogOut, CheckCircle2, AlertCircle, Loader2, RefreshCw } from 'lucide-react';
+import { Cloud, LogOut, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import type { GoogleDriveState } from '../hooks/useGoogleDrive';
 
 interface GoogleDriveButtonProps {

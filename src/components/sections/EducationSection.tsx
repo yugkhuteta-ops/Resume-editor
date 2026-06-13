@@ -5,7 +5,7 @@ import { EditableText } from '../EditableText';
 interface EducationSectionProps {
   data: Education[];
   viewMode: boolean;
-  onUpdate: (data: ResumeData) => void;
+  onUpdate: (data: Partial<ResumeData>) => void;
 }
 
 export function EducationSection({ data, viewMode, onUpdate }: EducationSectionProps) {
@@ -20,17 +20,17 @@ export function EducationSection({ data, viewMode, onUpdate }: EducationSectionP
       gpa: '',
       honors: '',
     };
-    onUpdate({ education: [...data, newEdu] } as any);
+    onUpdate({ education: [...data, newEdu] });
   };
 
   const removeEducation = (id: string) => {
-    onUpdate({ education: data.filter(e => e.id !== id) } as any);
+    onUpdate({ education: data.filter(e => e.id !== id) });
   };
 
   const updateEducation = (id: string, field: keyof Education, value: string) => {
     onUpdate({
       education: data.map(e => (e.id === id ? { ...e, [field]: value } : e))
-    } as any);
+    });
   };
 
   return (

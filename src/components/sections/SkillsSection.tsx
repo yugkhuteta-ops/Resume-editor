@@ -5,7 +5,7 @@ import { useState } from 'react';
 interface SkillsSectionProps {
   data: string[];
   viewMode: boolean;
-  onUpdate: (data: ResumeData) => void;
+  onUpdate: (data: Partial<ResumeData>) => void;
 }
 
 export function SkillsSection({ data, viewMode, onUpdate }: SkillsSectionProps) {
@@ -13,13 +13,13 @@ export function SkillsSection({ data, viewMode, onUpdate }: SkillsSectionProps) 
 
   const addSkill = () => {
     if (newSkill.trim()) {
-      onUpdate({ skills: [...data, newSkill.trim()] } as any);
+      onUpdate({ skills: [...data, newSkill.trim()] });
       setNewSkill('');
     }
   };
 
   const removeSkill = (index: number) => {
-    onUpdate({ skills: data.filter((_, i) => i !== index) } as any);
+    onUpdate({ skills: data.filter((_, i) => i !== index) });
   };
 
   if (viewMode) {

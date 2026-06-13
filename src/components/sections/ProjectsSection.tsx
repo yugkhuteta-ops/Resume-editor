@@ -5,7 +5,7 @@ import { EditableText } from '../EditableText';
 interface ProjectsSectionProps {
   data: Project[];
   viewMode: boolean;
-  onUpdate: (data: ResumeData) => void;
+  onUpdate: (data: Partial<ResumeData>) => void;
 }
 
 export function ProjectsSection({ data, viewMode, onUpdate }: ProjectsSectionProps) {
@@ -18,17 +18,17 @@ export function ProjectsSection({ data, viewMode, onUpdate }: ProjectsSectionPro
       link: '',
       bullets: [],
     };
-    onUpdate({ projects: [...data, newProject] } as any);
+    onUpdate({ projects: [...data, newProject] });
   };
 
   const removeProject = (id: string) => {
-    onUpdate({ projects: data.filter(p => p.id !== id) } as any);
+    onUpdate({ projects: data.filter(p => p.id !== id) });
   };
 
   const updateProject = (id: string, field: keyof Project, value: unknown) => {
     onUpdate({
       projects: data.map(p => (p.id === id ? { ...p, [field]: value } : p))
-    } as any);
+    });
   };
 
   const addBullet = (id: string) => {

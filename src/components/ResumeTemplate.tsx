@@ -16,7 +16,7 @@ interface ResumeTemplateProps {
   template: TemplateType;
   exportType: ExportType;
   isExportPreview?: boolean;
-  onUpdate: (data: ResumeData) => void;
+  onUpdate: (data: Partial<ResumeData>) => void;
   onUpdateSectionOrder: (order: SectionConfig[]) => void;
   pushUndo: () => void;
 }

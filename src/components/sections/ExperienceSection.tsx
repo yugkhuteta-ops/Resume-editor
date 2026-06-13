@@ -5,7 +5,7 @@ import { EditableText } from '../EditableText';
 interface ExperienceSectionProps {
   data: Experience[];
   viewMode: boolean;
-  onUpdate: (data: ResumeData) => void;
+  onUpdate: (data: Partial<ResumeData>) => void;
 }
 
 export function ExperienceSection({ data, viewMode, onUpdate }: ExperienceSectionProps) {
@@ -20,17 +20,17 @@ export function ExperienceSection({ data, viewMode, onUpdate }: ExperienceSectio
       current: false,
       bullets: [],
     };
-    onUpdate({ experience: [...data, newExp] } as any);
+    onUpdate({ experience: [...data, newExp] });
   };
 
   const removeExperience = (id: string) => {
-    onUpdate({ experience: data.filter(e => e.id !== id) } as any);
+    onUpdate({ experience: data.filter(e => e.id !== id) });
   };
 
   const updateExperience = (id: string, field: keyof Experience, value: unknown) => {
     onUpdate({
       experience: data.map(e => (e.id === id ? { ...e, [field]: value } : e))
-    } as any);
+    });
   };
 
   const addBullet = (id: string) => {

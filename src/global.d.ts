@@ -53,12 +53,14 @@ interface GoogleAccountsOAuth2 {
 }
 
 interface GoogleAccounts {
-  id: {
-    initialize: (config: IdConfiguration) => void;
-    renderButton: (element: HTMLElement, options: GsiButtonConfiguration) => void;
-    prompt: (momentListener?: () => void) => void;
+  accounts: {
+    id: {
+      initialize: (config: IdConfiguration) => void;
+      renderButton: (element: HTMLElement, options: GsiButtonConfiguration) => void;
+      prompt: (momentListener?: () => void) => void;
+    };
+    oauth2: GoogleAccountsOAuth2;
   };
-  oauth2: GoogleAccountsOAuth2;
 }
 
 interface Window {

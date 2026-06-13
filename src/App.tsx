@@ -33,6 +33,36 @@ export default function App() {
 
   const undoStackRef = useRef<ResumeData[]>([]);
   const redoStackRef = useRef<ResumeData[]>([]);
+  const [canUndo, setCanUndo] = useState(false);
+  const [canRedo, setCanRedo] = useState(false);
+
+  const pushUndo = useCallback(() => {
+    undoStackRef.current.push({ ...resume });
+    if (undoStackRef.current.length > 100) undoStackRef.current.shift();
+    redoStackRef.current = [];
+    setCanUndo(true);
+    setCanRedo(false);
+  }, [resume]);
+
+  const undo = useCallback(() => {
+    if (undoStackRef.current.length > 0) {
+      const prev = undoStackRef.current.pop()!;
+      redoStackRef.current.push({ ...resume });
+      updateResume(prev);
+      setCanUndo(undoStackRef.current.length > 0);
+      setCanRedo(true);
+    }
+  }, [resume, updateResume]);
+
+  const redo = useCallback(() => {
+    if (redoStackRef.current.length > 0) {
+      const next = redoStackRef.current.pop()!;
+      undoStackRef.current.push({ ...resume });
+      updateResume(next);
+      setCanRedo(redoStackRef.current.length > 0);
+      setCanUndo(true);
+    }
+  }, [resume, updateResume]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -64,32 +94,10 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   });
 
-  const pushUndo = useCallback(() => {
-    undoStackRef.current.push({ ...resume });
-    if (undoStackRef.current.length > 100) undoStackRef.current.shift();
-    redoStackRef.current = [];
-  }, [resume]);
-
-  const handleUpdate = useCallback((data: ResumeData) => {
+  const handleUpdate = useCallback((data: Partial<ResumeData>) => {
     pushUndo();
-    updateResume({ ...resume, ...data });
+    updateResume({ ...resume, ...data } as ResumeData);
   }, [resume, updateResume, pushUndo]);
-
-  const undo = useCallback(() => {
-    if (undoStackRef.current.length > 0) {
-      const prev = undoStackRef.current.pop()!;
-      redoStackRef.current.push({ ...resume });
-      updateResume(prev);
-    }
-  }, [resume, updateResume]);
-
-  const redo = useCallback(() => {
-    if (redoStackRef.current.length > 0) {
-      const next = redoStackRef.current.pop()!;
-      undoStackRef.current.push({ ...resume });
-      updateResume(next);
-    }
-  }, [resume, updateResume]);
 
   const handleExport = useCallback((exportType: ExportType, template: TemplateType) => {
     setShowExportModal(false);
@@ -115,7 +123,7 @@ export default function App() {
   useEffect(() => {
     if (!googleDrive.state.isSignedIn) return;
     googleDrive.saveToDrive(resume);
-  }, [resume, googleDrive.state.isSignedIn]);
+  }, [resume, googleDrive.state.isSignedIn, googleDrive]);
 
   const handleSyncNow = useCallback(() => {
     googleDrive.saveToDrive(resume);
@@ -160,9 +168,6 @@ export default function App() {
   const toggleSidebar = useCallback((view: 'ai' | 'history') => {
     setSidebarView(prev => prev === view ? null : view);
   }, []);
-
-  const canUndo = undoStackRef.current.length > 0;
-  const canRedo = redoStackRef.current.length > 0;
 
   if (!isLoaded) {
     return (

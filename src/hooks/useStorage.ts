@@ -68,21 +68,6 @@ export function useStorage(): StorageHook {
     resumeRef.current = resume;
   }, [resume]);
 
-  useEffect(() => {
-    loadAll();
-  }, []);
-
-  useEffect(() => {
-    if (!isLoaded) return;
-    if (autosaveTimerRef.current) clearTimeout(autosaveTimerRef.current);
-    autosaveTimerRef.current = setTimeout(() => {
-      persistResume(resumeRef.current);
-    }, AUTOSAVE_DELAY);
-    return () => {
-      if (autosaveTimerRef.current) clearTimeout(autosaveTimerRef.current);
-    };
-  }, [resume, isLoaded]);
-
   const loadAll = async () => {
     try {
       const db = await getDB();
@@ -128,6 +113,21 @@ export function useStorage(): StorageHook {
       console.error('Failed to save resume:', e);
     }
   }, []);
+
+  useEffect(() => {
+    loadAll();
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    if (autosaveTimerRef.current) clearTimeout(autosaveTimerRef.current);
+    autosaveTimerRef.current = setTimeout(() => {
+      persistResume(resumeRef.current);
+    }, AUTOSAVE_DELAY);
+    return () => {
+      if (autosaveTimerRef.current) clearTimeout(autosaveTimerRef.current);
+    };
+  }, [resume, isLoaded, persistResume]);
 
   const updateResume = useCallback((data: ResumeData) => {
     setResume(data);

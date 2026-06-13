@@ -4,12 +4,12 @@ import { EditableText } from '../EditableText';
 interface SummarySectionProps {
   data: string;
   viewMode: boolean;
-  onUpdate: (data: ResumeData) => void;
+  onUpdate: (data: Partial<ResumeData>) => void;
 }
 
 export function SummarySection({ data, viewMode, onUpdate }: SummarySectionProps) {
   const updateSummary = (value: string) => {
-    onUpdate({ summary: value } as any);
+    onUpdate({ summary: value });
   };
 
   return (

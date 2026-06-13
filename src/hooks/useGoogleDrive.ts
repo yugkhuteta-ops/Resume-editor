@@ -17,11 +17,11 @@ interface UseGoogleDriveReturn {
   state: GoogleDriveState;
   signIn: () => void;
   signOut: () => void;
-  saveToDrive: (data: unknown) => Promise<void>;
+  saveToDrive: (data: unknown) => void;
   loadFromDrive: () => Promise<unknown>;
 }
 
-let tokenClient: google.accounts.oauth2.TokenClient | null = null;
+let tokenClient: TokenClient | null = null;
 let tokenCallback: ((token: string) => void) | null = null;
 
 export function useGoogleDrive(): UseGoogleDriveReturn {
@@ -37,7 +37,7 @@ export function useGoogleDrive(): UseGoogleDriveReturn {
   const pendingDataRef = useRef<unknown | null>(null);
   const syncingRef = useRef(false);
   const stateRef = useRef(state);
-  stateRef.current = state;
+  useEffect(() => { stateRef.current = state; }, [state]);
 
   const initFromToken = useCallback(async (token: string) => {
     try {
@@ -72,10 +72,15 @@ export function useGoogleDrive(): UseGoogleDriveReturn {
     }
 
     if (!tokenClient) {
-      tokenClient = google.accounts.oauth2.initTokenClient({
+      const g = window.google;
+      if (!g) {
+        setState(s => ({ ...s, error: 'Google API not loaded' }));
+        return;
+      }
+      tokenClient = g.accounts.oauth2.initTokenClient({
         client_id: CLIENT_ID,
         scope: SCOPES,
-        callback: (resp) => {
+        callback: (resp: TokenResponse) => {
           if (resp.access_token) {
             storeToken(resp.access_token);
             if (tokenCallback) tokenCallback(resp.access_token);
@@ -91,7 +96,7 @@ export function useGoogleDrive(): UseGoogleDriveReturn {
     };
 
     setState(s => ({ ...s, isLoading: true, error: null }));
-    tokenClient.requestAccessToken();
+    tokenClient!.requestAccessToken();
   }, [initFromToken]);
 
   const signOut = useCallback(() => {
