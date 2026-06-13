@@ -1,0 +1,621 @@
+/* ============================================================
+   RESUME PRINT STYLES
+   Comprehensive print/PDF output styles for professional resumes
+   ============================================================ */
+
+/* ---------- Base Print Reset ---------- */
+@media print {
+  @page {
+    size: letter;
+    margin: 0.6in 0.7in;
+  }
+
+  @page :first {
+    margin-top: 0.6in;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html {
+    background: white !important;
+  }
+
+  body {
+    background: white !important;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 11pt !important;
+    line-height: 1.35 !important;
+    color: #000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Hide all non-resume UI */
+  .no-print,
+  nav,
+  .nav,
+  aside,
+  footer,
+  button,
+  .btn,
+  [role="navigation"],
+  .sidebar,
+  .chat-panel,
+  .ai-sidebar,
+  .version-history,
+  .ats-footer,
+  .controls,
+  .edit-controls,
+  .tooltip,
+  .dismiss-button,
+  .navbar,
+  .sticky,
+  [class*="sticky"],
+  [class*="fixed"],
+  input,
+  textarea,
+  select,
+  label {
+    display: none !important;
+  }
+
+  /* Force white backgrounds, remove decorative elements */
+  div,
+  section,
+  article,
+  header,
+  main,
+  aside,
+  footer,
+  nav {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+  }
+
+  /* Reset card styling */
+  [class*="card"],
+  [class*="shadow"],
+  [class*="rounded"],
+  [class*="border"] {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* ---------- Print Content Area ---------- */
+  .print-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    display: block !important;
+  }
+
+  /* ---------- Resume Container ---------- */
+  .resume-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    display: block !important;
+  }
+
+  /* ---------- Section Base ---------- */
+  .resume-section {
+    margin-bottom: 8pt !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .resume-section:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* ---------- Headings ---------- */
+  .resume-section-heading {
+    font-size: 12pt !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5pt !important;
+    border-bottom: 1.5pt solid #000 !important;
+    padding-bottom: 2pt !important;
+    margin: 0 0 5pt 0 !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* ---------- Contact Section ---------- */
+  .resume-contact {
+    text-align: center !important;
+    margin-bottom: 10pt !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .resume-contact .resume-name {
+    font-size: 18pt !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+    margin: 0 0 3pt 0 !important;
+    letter-spacing: 0.5pt !important;
+  }
+
+  .resume-contact .contact-line {
+    font-size: 9.5pt !important;
+    color: #000 !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+  }
+
+  .resume-contact .contact-separator {
+    color: #000 !important;
+    margin: 0 3pt !important;
+  }
+
+  /* ---------- Summary Section ---------- */
+  .resume-summary-text {
+    font-size: 10.5pt !important;
+    color: #000 !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+  }
+
+  /* ---------- Skills Section ---------- */
+  .resume-skills-list {
+    font-size: 10.5pt !important;
+    color: #000 !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+  }
+
+  .resume-skills-item {
+    display: inline !important;
+  }
+
+  .resume-skills-item::after {
+    content: ", " !important;
+  }
+
+  .resume-skills-item:last-child::after {
+    content: "" !important;
+  }
+
+  /* ---------- Experience / Project Entries ---------- */
+  .resume-entry {
+    margin-bottom: 7pt !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .resume-entry:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .resume-entry-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: baseline !important;
+    margin-bottom: 1.5pt !important;
+  }
+
+  .resume-entry-title {
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+  }
+
+  .resume-entry-subtitle {
+    font-size: 10.5pt !important;
+    font-weight: 600 !important;
+    color: #000 !important;
+  }
+
+  .resume-entry-org {
+    font-weight: 600 !important;
+  }
+
+  .resume-entry-dates {
+    font-size: 10pt !important;
+    color: #000 !important;
+    white-space: nowrap !important;
+    text-align: right !important;
+  }
+
+  .resume-entry-location {
+    font-size: 10pt !important;
+    color: #000 !important;
+  }
+
+  /* ---------- Bullet Points ---------- */
+  .resume-bullets {
+    margin: 2pt 0 0 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  .resume-bullet {
+    font-size: 10.5pt !important;
+    color: #000 !important;
+    line-height: 1.35 !important;
+    margin-bottom: 1.5pt !important;
+    padding-left: 14pt !important;
+    position: relative !important;
+    text-indent: 0 !important;
+  }
+
+  .resume-bullet::before {
+    content: "•" !important;
+    position: absolute !important;
+    left: 3pt !important;
+    color: #000 !important;
+    font-size: 10.5pt !important;
+  }
+
+  .resume-bullet:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* ---------- Education ---------- */
+  .resume-education-entry {
+    margin-bottom: 5pt !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .resume-education-degree {
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+  }
+
+  .resume-education-school {
+    font-size: 10.5pt !important;
+    color: #000 !important;
+  }
+
+  .resume-education-details {
+    font-size: 10pt !important;
+    color: #000 !important;
+  }
+
+  /* ---------- Achievement / Certification ---------- */
+  .resume-achievement-entry {
+    margin-bottom: 3pt !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .resume-achievement-title {
+    font-size: 10.5pt !important;
+    font-weight: 600 !important;
+    color: #000 !important;
+  }
+
+  .resume-achievement-detail {
+    font-size: 10.5pt !important;
+    color: #000 !important;
+  }
+
+  /* ---------- Page Break Helpers ---------- */
+  .page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  .avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* ---------- Template: ATS Classic ---------- */
+  .template-ats-classic .resume-section-heading {
+    font-size: 11pt !important;
+    letter-spacing: 0.3pt !important;
+    border-bottom: 1pt solid #000 !important;
+  }
+
+  .template-ats-classic .resume-name {
+    font-size: 16pt !important;
+  }
+
+  .template-ats-classic .resume-entry-dates {
+    font-weight: 400 !important;
+  }
+
+  /* ---------- Template: Harvard ---------- */
+  .template-harvard .resume-contact {
+    text-align: left !important;
+  }
+
+  .template-harvard .resume-section-heading {
+    font-size: 11pt !important;
+    border-bottom: 0.5pt solid #555 !important;
+    text-transform: uppercase !important;
+  }
+
+  .template-harvard .resume-entry-title {
+    font-weight: 700 !important;
+  }
+
+  .template-harvard .resume-entry-org {
+    font-style: italic !important;
+    font-weight: 400 !important;
+  }
+
+  .template-harvard .resume-bullet {
+    padding-left: 12pt !important;
+  }
+
+  .template-harvard .resume-bullet::before {
+    content: "–" !important;
+  }
+
+  /* ---------- Template: Jake's Style ---------- */
+  .template-jakes .resume-contact {
+    text-align: center !important;
+  }
+
+  .template-jakes .resume-name {
+    font-size: 20pt !important;
+    font-weight: 700 !important;
+  }
+
+  .template-jakes .resume-section-heading {
+    font-size: 10.5pt !important;
+    font-weight: 600 !important;
+    border-bottom: 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1pt !important;
+  }
+
+  .template-jakes .resume-entry {
+    margin-bottom: 6pt !important;
+  }
+
+  .template-jakes .resume-entry-header {
+    flex-wrap: wrap !important;
+  }
+
+  .template-jakes .resume-bullet {
+    font-size: 10pt !important;
+    line-height: 1.3 !important;
+    padding-left: 12pt !important;
+  }
+
+  /* ---------- Template: Modern Professional ---------- */
+  .template-modern .resume-contact {
+    text-align: left !important;
+    border-bottom: 2pt solid #000 !important;
+    padding-bottom: 8pt !important;
+    margin-bottom: 10pt !important;
+  }
+
+  .template-modern .resume-name {
+    font-size: 20pt !important;
+  }
+
+  .template-modern .contact-line {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0 6pt !important;
+  }
+
+  .template-modern .resume-section-heading {
+    font-size: 11pt !important;
+    font-weight: 600 !important;
+    border-bottom: 1pt solid #333 !important;
+    text-transform: uppercase !important;
+  }
+
+  .template-modern .resume-bullet {
+    padding-left: 12pt !important;
+    margin-bottom: 2pt !important;
+  }
+
+  /* ---------- Template: Technical SWE ---------- */
+  .template-technical .resume-contact {
+    text-align: center !important;
+    border-bottom: 1.5pt solid #000 !important;
+    padding-bottom: 6pt !important;
+    margin-bottom: 8pt !important;
+  }
+
+  .template-technical .resume-name {
+    font-size: 17pt !important;
+  }
+
+  .template-technical .resume-section-heading {
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    border-bottom: 1.5pt solid #000 !important;
+    text-transform: uppercase !important;
+  }
+
+  .template-technical .resume-skills-list {
+    display: block !important;
+  }
+
+  .template-technical .resume-entry-header {
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+
+  .template-technical .resume-bullet {
+    font-size: 10pt !important;
+    padding-left: 12pt !important;
+  }
+
+  .template-technical .resume-entry-dates {
+    font-weight: 500 !important;
+  }
+
+  /* ---------- Export: ATS ---------- */
+  .export-ats .resume-section-heading {
+    font-size: 11pt !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    border-bottom: 0.5pt solid #000 !important;
+  }
+
+  .export-ats .resume-bullet::before {
+    content: "" !important;
+  }
+
+  .export-ats .resume-bullet {
+    padding-left: 0 !important;
+    text-indent: 0 !important;
+  }
+
+  .export-ats .resume-contact .contact-separator {
+    display: inline !important;
+  }
+
+  /* ---------- Export: Compact ---------- */
+  .export-compact .resume-section {
+    margin-bottom: 5pt !important;
+  }
+
+  .export-compact .resume-entry {
+    margin-bottom: 4pt !important;
+  }
+
+  .export-compact .resume-bullet {
+    font-size: 9.5pt !important;
+    line-height: 1.25 !important;
+    margin-bottom: 1pt !important;
+    padding-left: 10pt !important;
+  }
+
+  .export-compact .resume-section-heading {
+    margin-bottom: 3pt !important;
+    font-size: 10.5pt !important;
+  }
+
+  .export-compact .resume-contact {
+    margin-bottom: 6pt !important;
+  }
+
+  .export-compact .resume-name {
+    font-size: 15pt !important;
+  }
+
+  .export-compact .contact-line {
+    font-size: 8.5pt !important;
+  }
+
+  .export-compact .resume-summary-text {
+    font-size: 9.5pt !important;
+  }
+
+  /* ---------- Export: One Page ---------- */
+  .export-onepage {
+    /* Aggressive space compression */
+  }
+
+  .export-onepage .resume-section {
+    margin-bottom: 4pt !important;
+  }
+
+  .export-onepage .resume-entry {
+    margin-bottom: 3pt !important;
+  }
+
+  .export-onepage .resume-bullet {
+    font-size: 9pt !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5pt !important;
+    padding-left: 9pt !important;
+  }
+
+  .export-onepage .resume-section-heading {
+    margin-bottom: 2pt !important;
+    font-size: 10pt !important;
+    padding-bottom: 1pt !important;
+  }
+
+  .export-onepage .resume-contact {
+    margin-bottom: 5pt !important;
+  }
+
+  .export-onepage .resume-name {
+    font-size: 14pt !important;
+    margin-bottom: 1pt !important;
+  }
+
+  .export-onepage .contact-line {
+    font-size: 8pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .export-onepage .resume-summary-text {
+    font-size: 9pt !important;
+    line-height: 1.25 !important;
+  }
+
+  .export-onepage .resume-entry-dates {
+    font-size: 9pt !important;
+  }
+
+  /* ---------- Link Handling ---------- */
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  /* Remove URL display after links */
+  a[href^="http"]::after,
+  a[href^="www"]::after {
+    content: "" !important;
+  }
+
+  /* ---------- Tables ---------- */
+  table {
+    border-collapse: collapse !important;
+  }
+
+  /* ---------- Images ---------- */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* ---------- Orphans / Widows ---------- */
+  p {
+    orphans: 2 !important;
+    widows: 2 !important;
+  }
+
+  /* ---------- Edit Mode Indicators ---------- */
+  .edit-mode-indicator,
+  .section-controls,
+  .drag-handle,
+  .reorder-controls {
+    display: none !important;
+  }
+}
+
+/* ---------- Print Preview Notice ---------- */
+.print-preview-notice {
+  display: none;
+}
+
+@media print {
+  .print-preview-notice {
+    display: none !important;
+  }
+}
