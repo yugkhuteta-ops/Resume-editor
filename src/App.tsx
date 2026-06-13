@@ -6,6 +6,8 @@ import { VersionHistory } from './components/VersionHistory';
 import { ExportModal } from './components/ExportModal';
 import { TemplateSelector } from './components/TemplateSelector';
 import { useStorage } from './hooks/useStorage';
+import { useGoogleDrive } from './hooks/useGoogleDrive';
+import { GoogleDriveButton } from './components/GoogleDriveButton';
 import type { ResumeData, TemplateType, ExportType } from './types';
 import {
   FileDown, Upload, Download, RotateCcw, RotateCw,
@@ -21,6 +23,7 @@ export default function App() {
     updateSectionOrder, updateSettings
   } = useStorage();
 
+  const googleDrive = useGoogleDrive();
   const [sidebarView, setSidebarView] = useState<'ai' | 'history' | null>(null);
   const [atsExpanded, setAtsExpanded] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
@@ -108,6 +111,15 @@ export default function App() {
       }, 500);
     }, 300);
   }, [saveVersion, updateSettings]);
+
+  useEffect(() => {
+    if (!googleDrive.state.isSignedIn) return;
+    googleDrive.saveToDrive(resume);
+  }, [resume, googleDrive.state.isSignedIn]);
+
+  const handleSyncNow = useCallback(() => {
+    googleDrive.saveToDrive(resume);
+  }, [googleDrive, resume]);
 
   const handleTemplateChange = useCallback((template: TemplateType) => {
     updateSettings({ template });
@@ -242,6 +254,15 @@ export default function App() {
             <Download size={15} aria-hidden="true" />
             <span className="hidden sm:inline">Backup</span>
           </button>
+
+          <div className="h-5 w-px bg-gray-200 mx-0.5" />
+
+          <GoogleDriveButton
+            state={googleDrive.state}
+            onSignIn={googleDrive.signIn}
+            onSignOut={googleDrive.signOut}
+            onSyncNow={handleSyncNow}
+          />
 
           <div className="h-5 w-px bg-gray-200 mx-0.5" />
 
