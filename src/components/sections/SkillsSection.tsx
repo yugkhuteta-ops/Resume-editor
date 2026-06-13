@@ -62,7 +62,7 @@ export function SkillsSection({ data, viewMode, onUpdate }: SkillsSectionProps) 
             value={newSkill}
             onChange={e => setNewSkill(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && addSkill()}
-            placeholder="Add skill..."
+            placeholder="Add skill…"
             className="border border-gray-300 rounded-full px-2 py-1 text-sm w-24 focus:outline-none focus:border-blue-500"
           />
           <button onClick={addSkill} className="text-blue-600 hover:text-blue-700">

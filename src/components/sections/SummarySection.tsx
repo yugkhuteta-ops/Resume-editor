@@ -23,7 +23,7 @@ export function SummarySection({ data, viewMode, onUpdate }: SummarySectionProps
           onChange={updateSummary}
           viewMode={viewMode}
           className="resume-summary-text text-sm text-gray-700 leading-relaxed"
-          placeholder="Brief professional summary highlighting your key skills and experience..."
+          placeholder="Brief professional summary highlighting your key skills and experience\u2026"
           multiline
         />
       ) : (

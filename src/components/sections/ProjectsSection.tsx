@@ -70,7 +70,7 @@ export function ProjectsSection({ data, viewMode, onUpdate }: ProjectsSectionPro
                   value={project.description}
                   onChange={v => updateProject(project.id, 'description', v)}
                   viewMode={viewMode}
-                  placeholder="Brief project description..."
+                  placeholder="Brief project description\u2026"
                   className="text-sm text-gray-600 mt-0.5"
                   multiline
                 />

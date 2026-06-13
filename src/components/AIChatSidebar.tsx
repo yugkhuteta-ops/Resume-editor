@@ -212,7 +212,7 @@ export function AIChatSidebar({ resumeData, onClose }: AIChatSidebarProps) {
               type="password"
               value={apiKey}
               onChange={e => setApiKey(e.target.value)}
-              placeholder="sk-..."
+              placeholder="sk-\u2026"
               className="flex-1 px-2.5 py-1.5 border border-amber-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
             />
             <button
@@ -277,7 +277,7 @@ export function AIChatSidebar({ resumeData, onClose }: AIChatSidebarProps) {
           <div className="flex justify-start">
             <div className="bg-gray-100 p-3 rounded-lg flex items-center gap-2">
               <Loader2 className="animate-spin" size={14} />
-              <span className="text-xs text-gray-500">Thinking...</span>
+              <span className="text-xs text-gray-500">Thinking\u2026</span>
             </div>
           </div>
         )}
@@ -293,7 +293,7 @@ export function AIChatSidebar({ resumeData, onClose }: AIChatSidebarProps) {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask for resume help..."
+            placeholder="Ask for resume help\u2026"
             disabled={!apiKey}
             className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed transition-shadow"
           />

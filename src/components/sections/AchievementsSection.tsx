@@ -65,7 +65,7 @@ export function AchievementsSection({ data, viewMode, onUpdate }: AchievementsSe
                   value={ach.description}
                   onChange={v => updateAchievement(ach.id, 'description', v)}
                   viewMode={viewMode}
-                  placeholder="Description or issuing organization..."
+                  placeholder="Description or issuing organization\u2026"
                   className="resume-achievement-detail text-sm text-gray-600 mt-0.5"
                   multiline
                 />

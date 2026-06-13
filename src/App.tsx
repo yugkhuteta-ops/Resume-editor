@@ -157,7 +157,7 @@ export default function App() {
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="flex items-center gap-3 text-gray-500">
           <div className="w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
-          <span>Loading your resume...</span>
+          <span>Loading your resume\u2026</span>
         </div>
       </div>
     );
@@ -169,7 +169,7 @@ export default function App() {
       <nav className="bg-white border-b border-gray-200 px-3 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between no-print sticky top-0 z-30 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <FileJson size={18} className="text-primary-500" />
+            <FileJson size={18} className="text-primary-500" aria-hidden="true" />
             <span className="text-base font-bold text-gray-800 hidden sm:inline">Resume Editor</span>
           </div>
 
@@ -183,7 +183,7 @@ export default function App() {
                 : 'bg-primary-500 text-white hover:bg-primary-600 shadow-sm'
             }`}
           >
-            {isViewMode ? <EyeOff size={15} /> : <Eye size={15} />}
+            {isViewMode ? <EyeOff size={15} aria-hidden="true" /> : <Eye size={15} aria-hidden="true" />}
             <span className="hidden sm:inline">{isViewMode ? 'Edit' : 'View'}</span>
           </button>
 
@@ -201,16 +201,18 @@ export default function App() {
             disabled={!canUndo}
             className="p-1.5 sm:p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             title="Undo (Ctrl+Z)"
+            aria-label="Undo"
           >
-            <RotateCcw size={15} />
+            <RotateCcw size={15} aria-hidden="true" />
           </button>
           <button
             onClick={redo}
             disabled={!canRedo}
             className="p-1.5 sm:p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             title="Redo (Ctrl+Shift+Z)"
+            aria-label="Redo"
           >
-            <RotateCw size={15} />
+            <RotateCw size={15} aria-hidden="true" />
           </button>
 
           <div className="h-5 w-px bg-gray-200 mx-0.5" />
@@ -219,13 +221,14 @@ export default function App() {
             onClick={() => setShowExportModal(true)}
             className="flex items-center gap-1.5 px-2.5 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
             title="Export PDF (Ctrl+Shift+P)"
+            aria-label="Export PDF"
           >
-            <FileDown size={15} />
+            <FileDown size={15} aria-hidden="true" />
             <span className="hidden sm:inline">PDF</span>
           </button>
 
-          <label className="flex items-center gap-1.5 px-2.5 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors">
-            <Upload size={15} />
+          <label className="flex items-center gap-1.5 px-2.5 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors" aria-label="Import resume JSON">
+            <Upload size={15} aria-hidden="true" />
             <span className="hidden sm:inline">Import</span>
             <input type="file" accept=".json" onChange={handleImport} className="hidden" />
           </label>
@@ -234,8 +237,9 @@ export default function App() {
             onClick={handleExportJson}
             className="flex items-center gap-1.5 px-2.5 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
             title="Export JSON backup"
+            aria-label="Export JSON backup"
           >
-            <Download size={15} />
+            <Download size={15} aria-hidden="true" />
             <span className="hidden sm:inline">Backup</span>
           </button>
 
@@ -247,8 +251,9 @@ export default function App() {
               sidebarView === 'ai' ? 'bg-primary-50 text-primary-600' : 'text-gray-600 hover:bg-gray-100'
             }`}
             title="AI Assistant"
+            aria-label="AI Assistant"
           >
-            <Sparkles size={15} />
+            <Sparkles size={15} aria-hidden="true" />
             <span className="hidden sm:inline">AI</span>
           </button>
 
@@ -258,8 +263,9 @@ export default function App() {
               sidebarView === 'history' ? 'bg-primary-50 text-primary-600' : 'text-gray-600 hover:bg-gray-100'
             }`}
             title="Version History"
+            aria-label="Version History"
           >
-            <History size={15} />
+            <History size={15} aria-hidden="true" />
             <span className="hidden sm:inline">History</span>
             {versions.length > 0 && (
               <span className="text-xs bg-gray-200 text-gray-600 rounded-full px-1.5 py-0.5 ml-0.5">
@@ -321,10 +327,10 @@ export default function App() {
           className="w-full flex items-center justify-between px-4 sm:px-6 py-2 text-sm text-gray-600 hover:bg-gray-50 transition-colors"
         >
           <div className="flex items-center gap-2">
-            <AlertTriangle size={15} className="text-amber-500" />
+            <AlertTriangle size={15} className="text-amber-500" aria-hidden="true" />
             <span className="font-medium">Resume Health</span>
           </div>
-          <ChevronRight size={16} className={`transition-transform ${atsExpanded ? 'rotate-90' : ''}`} />
+          <ChevronRight size={16} className={`transition-transform ${atsExpanded ? 'rotate-90' : ''}`} aria-hidden="true" />
         </button>
         {atsExpanded && (
           <div className="px-4 sm:px-6 pb-3">

@@ -351,7 +351,7 @@ export function ATSAnalyzer({ resumeData }: { resumeData: ResumeData }) {
             <textarea
               value={jobDescription}
               onChange={e => setJobDescription(e.target.value)}
-              placeholder="Paste a job description to check keyword match rate..."
+              placeholder="Paste a job description to check keyword match rate\u2026"
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none mb-2"
               rows={4}
             />
@@ -388,7 +388,7 @@ export function ATSAnalyzer({ resumeData }: { resumeData: ResumeData }) {
                         <span key={i} className="px-1.5 py-0.5 bg-red-100 text-red-800 text-[10px] rounded">{kw}</span>
                       ))}
                       {keywordMatches.missing.length > 20 && (
-                        <span className="text-[10px] text-gray-400 italic">+{keywordMatches.missing.length - 20} more...</span>
+                        <span className="text-[10px] text-gray-400 italic">+{keywordMatches.missing.length - 20} more\u2026</span>
                       )}
                     </div>
                     <p className="text-[11px] text-amber-700 mt-1">
